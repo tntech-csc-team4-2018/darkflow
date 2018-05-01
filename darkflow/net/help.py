@@ -8,7 +8,7 @@ import numpy as np
 import sys
 import cv2
 import os
-import csv
+#import csv
 
 old_graph_msg = 'Resolving old graph def {} (no guarantee)'
 
@@ -102,10 +102,12 @@ def camera(self):
     'Cannot capture source'
 
     if self.FLAGS.csv :
-        f = open('{}.csv'.format(file),'w')
-        writer = csv.writer(f, delimiter=',')
-        writer.writerow(['frame_id', 'track_id' , 'x', 'y', 'w', 'h'])
-        f.flush()
+        #f = open('{}.csv'.format(file),'w')
+        #writer = csv.writer(f, delimiter=',')
+        #writer.writerow(['frame_id', 'track_id' , 'x', 'y', 'w', 'h'])
+        #f.flush()
+        f = None
+        writer = None
     else :
         f =None
         writer= None
@@ -177,11 +179,11 @@ def camera(self):
             buffer_inp = list()
             buffer_pre = list()
 
-        if elapsed % 5 == 0:
-            sys.stdout.write('\r')
-            sys.stdout.write('{0:3.3f} FPS'.format(
-                elapsed / (timer() - start)))
-            sys.stdout.flush()
+        #if elapsed % 5 == 0:
+            #sys.stdout.write('\r')
+            #sys.stdout.write('{0:3.3f} FPS'.format(
+                #elapsed / (timer() - start)))
+            #sys.stdout.flush()
         if self.FLAGS.display :
             choice = cv2.waitKey(1)
             if choice == 27:
@@ -190,8 +192,8 @@ def camera(self):
     sys.stdout.write('\n')
     if SaveVideo:
         videoWriter.release()
-    if self.FLAGS.csv :
-        f.close()
+    #if self.FLAGS.csv :
+        #f.close()
     camera.release()
     if self.FLAGS.display :
         cv2.destroyAllWindows()
